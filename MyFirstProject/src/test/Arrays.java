@@ -164,7 +164,22 @@ public class Arrays {
 			System.out.print(val + " ");
 		}
 		
-		String[] diagramHead = {"Country", "Total Cases", "Active", "Recovered"};
+		Object[][] covidDiagram = {
+			{"Country", "TotalCases", "Active", "Recovered"},
+			{"USA", 1000, 100, 900},
+			{"India", 2000, 200, 1800},
+			{"Brazil", 3000, 300, 2200},
+			{"UK", 4000, 400, 2700},
+			{"France", 5000, 500, 3100}
+		};
+		
+		System.out.println("COVID cases by country: ");
+		for(Object[] row : covidDiagram) {
+			for(Object element : row) {
+				System.out.print(element + " ");
+			}
+			System.out.println();
+		}
 		
 	}
 }
