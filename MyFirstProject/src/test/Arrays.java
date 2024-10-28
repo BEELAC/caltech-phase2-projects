@@ -121,7 +121,7 @@ public class Arrays {
 //			System.out.println();
 //		}
 		
-		String[] countryName = {"USA", "INDIA", "BRAZIL", "UK", "FRANCE"};
+		String[] countryName = {"USA", "INDIA", "BRAZIL", "UK", "FRANCE"}; // Initialized the country names
 		
 //		System.out.println("*******For Loop*******");
 //		for(int i = 0; i < countryName.length; i++) {
@@ -135,7 +135,7 @@ public class Arrays {
 		
 		String[] header = {"Country", "Total", "Active", "Recovered"};
 		
-		int[][] covidCasesArr = {
+		int[][] covidCasesArr = {  // Initialized the values of cases in countries
 				{100, 20, 80},
 				{200, 40, 160},
 				{300, 60, 240},
@@ -171,7 +171,9 @@ public class Arrays {
 		System.out.println("3. Active Cases");
 		System.out.println("4. Recovered Cases");
 		System.out.println();
-		Scanner scanner = new Scanner(System.in);
+		
+		// Initialized scanner
+		Scanner scanner = new Scanner(System.in); 
 		System.out.println("Enter Your Choice:");
 		int choice = scanner.nextInt();
 		
@@ -179,8 +181,8 @@ public class Arrays {
 			case 1:
 				scanner.nextLine();
 				System.out.println("Enter Name of the Country: ");
-				String name = scanner.nextLine();
 				
+				String name = scanner.nextLine();
 				int idx = -1;
 				for(int i = 0; i < countryName.length; i++) {
 					if(name.equalsIgnoreCase(countryName[i])) {
@@ -202,26 +204,104 @@ public class Arrays {
 				break;
 			
 			case 2:
+				getCountryName(scanner, covidCasesArr, countryName);
 				
-				scanner.nextLine();
-				System.out.println("Enter total cases: ");
-				int totalCases = scanner.nextInt();
-				System.out.println("total cases: " + totalCases);
+				/*
+				 * scanner.nextLine(); 
+				 * System.out.println("Enter Total Cases: "); 
+				 * int totalCases= scanner.nextInt(); 
+				 * System.out.println("total Cases: " + totalCases);
+				 * 
+				 * int idxCountry = -1;
+				 * 
+				 * for(int i = 0; i < covidCasesArr.length; i++) { 
+				 * if(totalCases == covidCasesArr[i][0]) { 
+				 * idxCountry = i; 
+				 * } 
+				 * }
+				 * 
+				 * System.out.println("Total Cases " + totalCases + " Belongs to " + countryName[idxCountry]);
+				 * System.out.println("=============================="); 
+				 * System.out.println();
+				 */		
+			break;
 				
-				int idxCtr = -1;
+			case 3:
+				getCountryName(scanner, covidCasesArr, countryName);
 				
-				for(int i = 0; i < covidCasesArr.length; i++) {
-					if(totalCases == covidCasesArr[i][0]) {
-						idxCtr = i;
-						break;
-					}
-				}
+				/*
+				 * scanner.nextLine(); System.out.println("Enter Active Cases"); int totalActive
+				 * = scanner.nextInt(); System.out.println("Total Active Cases: " +
+				 * totalActive);
+				 * 
+				 * int idxActive = -1; for(int i = 0; i < covidCasesArr.length; i++) {
+				 * if(covidCasesArr[i][1] == totalActive) { idxActive = i; } }
+				 * 
+				 * System.out.println("Total Active Cases: " + totalActive + " Belongs to " +
+				 * countryName[idxActive]);
+				 * System.out.println("=============================="); System.out.println();
+				 */
+			break;
+			
+			case 4:
+				getCountryName(scanner, covidCasesArr, countryName);
 				
-				System.out.println("Total Cases " + totalCases + " belongs to " + countryName[idxCtr]);
-				
-				break;
-				
+				/*
+				 * scanner.nextLine(); System.out.println("Enter Recovered Cases"); int
+				 * totalRecovered = scanner.nextInt();
+				 * System.out.println("Total Recovered Cases: " + totalRecovered);
+				 * 
+				 * int idxRecovered = -1; for(int i = 0; i < covidCasesArr.length; i++) {
+				 * if(covidCasesArr[i][2] == totalRecovered) { idxRecovered = i; } }
+				 * 
+				 * System.out.println("Total Recovered Cases: " + totalRecovered +
+				 * " Belongs to " + countryName[idxRecovered]);
+				 * System.out.println("=============================="); System.out.println();
+				 */
+			break;
 		}
+	}
+	
+	// Initialized new method(function) for case 2
+	/*
+	 * static void getCountryName(Scanner scanner, int[][] covidCasesArr, String[]
+	 * countryName) { scanner.nextLine(); System.out.println("Enter Total Cases: ");
+	 * int totalCases = scanner.nextInt(); System.out.println("total Cases: " +
+	 * totalCases);
+	 * 
+	 * int idxCountry = -1;
+	 * 
+	 * for(int i = 0; i < covidCasesArr.length; i++) { if(totalCases ==
+	 * covidCasesArr[i][0]) { idxCountry = i; } }
+	 * 
+	 * System.out.println("Total Cases " + totalCases + " Belongs to " +
+	 * countryName[idxCountry]);
+	 * System.out.println("=============================="); System.out.println(); }
+	 */
+	
+	// Refined the method so that it can be used for all cases
+	static void getCountryName(Scanner scanner, int[][] covidCasesArr, String[] countryName) {
+		scanner.nextLine();
+		System.out.println("Enter Case: ");
+		int totalCases = scanner.nextInt();
+		System.out.println("Entered Case: " + totalCases);
+		
+		scanner.nextLine();
+		System.out.println("Choose Data Detail: 0(total cases), 1(active cases), or 2(recovered cases)");
+		int caseIndex = scanner.nextInt();
+		System.out.println("Case Index " + caseIndex);
+		
+		int idxCountry = -1;
+		
+		for(int i = 0; i < covidCasesArr.length; i++) {
+			if(totalCases == covidCasesArr[i][caseIndex]) {
+				idxCountry = i;
+			}
+		}
+		
+		System.out.println("Entered Case " + totalCases + " Belongs to " + countryName[idxCountry]);
+		System.out.println("==============================");
+		System.out.println();
 	}
 	
 }
